@@ -1,14 +1,15 @@
-.container {
-    
-}
 .books {
     display: flex;
-    flex-flow: wrap;
+    flex-wrap: wrap;
+    flex-direction: row;
     justify-content: flex-start;
     align-content: flex-start;
 }
 .book {
     width: 18rem;
     margin: 10px;
-    flex-direction: row;
+}
+.bookcover {
+    height: 400px;
+    width: 100%;
 }
