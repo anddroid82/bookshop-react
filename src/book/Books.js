@@ -21,10 +21,9 @@ function Books() {
 
   return (
     <div>
-        {books.length}
         {books.map(b=>{
             return (
-                <div key={b.id}>{b.title}</div>
+                <Book key={b.id} book={b}/>
             )
         })}
     </div>

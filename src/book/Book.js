@@ -1,6 +1,10 @@
-function Book(props) {
+function Book({book}) {
     return (
-        <div>{props.name}</div>
+        <div class="book">
+            <span class="image"><img src={book.image} /></span>
+            <span class="title">{book.title}</span>
+            <span class="author">{book.authors[0].name}</span>
+        </div>
     );
 }
 
