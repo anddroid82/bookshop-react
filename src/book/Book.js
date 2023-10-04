@@ -20,16 +20,15 @@ function Book({ book }) {
                 <p className="card-text"><strong>Szerző: </strong>{book.authors[0].name}</p>
                 <div className='mt-auto'>
                     <div>
-                        <strong>Ár: </strong>
                         {edited ?
-                            (<div className="input-group">
-                                <input type="text" className="form-control" value={newPrice} onChange={(e)=>setNewPrice(e.target.value)} />
+                            (<div className="input-group priceControl">
+                                <input type="text" className="form-control" value={newPrice} pattern="[0-9]" onChange={(e)=>setNewPrice(e.target.value.replace(/\D/g, ''))} />
                                 <div className="input-group-append">
                                     <i className="bi bi-arrow-counterclockwise" onClick={()=>setEdited(!edited)}></i>
                                     <i className="bi bi-check" onClick={(event)=>{setEdited(!edited);save(event)}}></i>
                                 </div>
                             </div>) :
-                            (<span>{book.price} <i className="bi bi-pen" onClick={() => setEdited(!edited)}></i></span>)}
+                            (<><strong>Ár: </strong><span>{book.price} <i className="bi bi-pen" onClick={() => setEdited(!edited)}></i></span></>)}
                     </div>
                 </div>
             </div>
