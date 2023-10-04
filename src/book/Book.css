@@ -13,6 +13,9 @@
     height: 400px;
     width: 100%;
 }
+.priceControl {
+    width: 150px !important;
+}
 .priceControl input {
     font-size: 0.8em;
     padding: 3px 6px !important;

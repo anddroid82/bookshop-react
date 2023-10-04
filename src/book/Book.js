@@ -22,9 +22,9 @@ function Book({ book }) {
                     <div>
                         {edited ?
                             (<div className="input-group priceControl">
-                                <input type="text" className="form-control" value={newPrice} pattern="[0-9]" onChange={(e)=>setNewPrice(e.target.value.replace(/\D/g, ''))} />
+                                <input type="text" className="form-control" value={newPrice} pattern="[0-9]" onChange={(e)=>setNewPrice(e.target.value.replace(/[^0-9]/g, ''))} />
                                 <div className="input-group-append">
-                                    <i className="bi bi-arrow-counterclockwise" onClick={()=>setEdited(!edited)}></i>
+                                    <i className="bi bi-arrow-counterclockwise" onClick={()=>{setEdited(!edited);setNewPrice(edited?book.price:newPrice)}}></i>
                                     <i className="bi bi-check" onClick={(event)=>{setEdited(!edited);save(event)}}></i>
                                 </div>
                             </div>) :
