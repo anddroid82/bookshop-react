@@ -31,6 +31,7 @@ function Book({ book, updateBooksList }) {
     modData.append("summary", newSummaryRef.current.value);
     modData.append("isbn", newISBNRef.current.value);
     modData.append("price", newPriceRef.current.value);
+    modData.append('authors',newAuthors.map((a)=>{return a.id}).join(','))
     axios
       .post("shop/book/" + book.id + "/mod", modData)
       .then((resp) => {
