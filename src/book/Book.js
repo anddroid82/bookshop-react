@@ -50,13 +50,32 @@ function Book({ book, updateBooksList }) {
         resp.data.forEach((element) => {
           authors.push(element);
         });
-        authors.sort((a,b)=>{return (a.name < b.name?-1:(a.name === b.name?0:1))});
+        authors.sort((a, b) => {
+          return a.name < b.name ? -1 : a.name === b.name ? 0 : 1;
+        });
         setAllAuthors(authors);
+        setNewAuthors(book.authors);
       })
       .catch((err) => {
         console.log(err);
       });
   };
+
+  const addAuthor = (e) => {
+    let selectedAuthor = allAuthors.find( (a) => {
+        return a.id == e.target.value;
+    })
+    if (!newAuthors.find(e => e.id == selectedAuthor.id)) {
+        setNewAuthors([...newAuthors,selectedAuthor]);
+    }
+  }
+
+  const removeAuthor = (e) => {
+    const temp = newAuthors.filter((a)=>{
+        return a.id != e.target.attributes['data-author'].value;
+    })
+    setNewAuthors(temp);
+  }
 
   return (
     <Card className="book">
@@ -112,11 +131,20 @@ function Book({ book, updateBooksList }) {
               defaultValue={book.isbn}
             />
           </FloatingLabel>
+          <div className="form-control" id="authorsDiv">
+            {newAuthors.map((a) => {
+              return (
+                <span key={book.id+"_"+a.id} className="form-control d-inline" data-author={a.id} onClick={(e) => {removeAuthor(e)}}>
+                  {a.name}
+                </span>
+              );
+            })}
+          </div>
           <FloatingLabel label="szerzők">
-            <Form.Select>
+            <Form.Select onChange={(e) => {addAuthor(e)}}>
               <option>adjon hozzá új szerzőket</option>
               {allAuthors.map((a) => {
-                return <option value={a.id}>{a.name}</option>;
+                return <option value={a.id} key={a.id}>{a.name}</option>;
               })}
             </Form.Select>
           </FloatingLabel>
