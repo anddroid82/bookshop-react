@@ -6,7 +6,7 @@ import './Book.css'
 function Books() {
   const [books, setBooks] = useState([]);
 
-  useEffect(() => {
+  const loadBooks = () => {
     axios.get("shop/book")
       .then((resp) => {
         let result = [];
@@ -18,6 +18,10 @@ function Books() {
       .catch(function (error) {
         console.log(error);
       });
+  }
+
+  useEffect(() => {
+    loadBooks();
   }, []);
 
   return (
@@ -25,7 +29,7 @@ function Books() {
       <div className="books mr-auto">
         {books.map(b => {
           return (
-            <Book key={b.id} book={b} />
+            <Book key={b.id} book={b} updateBooksList={loadBooks} />
           )
         })}
       </div>

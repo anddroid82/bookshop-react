@@ -13,7 +13,7 @@
     height: 400px;
     width: 100%;
 }
-.priceControl {
+/*.priceControl {
     width: 150px !important;
 }
 .priceControl input {
@@ -26,4 +26,10 @@
 }
 .priceControl p {
     margin: 0 !important;
+}*/
+.modButton {
+    width: 50px;
+}
+.form-floating {
+    margin-bottom: 5px;
 }
