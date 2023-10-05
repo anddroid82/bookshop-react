@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import './Book.css'
 import { Button, Modal } from 'react-bootstrap';
 import { Form, FloatingLabel, Card } from 'react-bootstrap';
@@ -15,6 +15,10 @@ function Book({ book, updateBooksList }) {
     const handleClose = () => {
         setShow(false)
     }
+
+    const [allAuthors, setAllAuthors] = useState([]);
+
+    const [newAuthors, setNewAuthors] = useState([]);
 
     const priceFormat = (e) => {
         newPriceRef.current.value = e.target.value.replace(/[^0-9]/g, '');
@@ -39,7 +43,8 @@ function Book({ book, updateBooksList }) {
     const loadAuthors = () => {
         axios.get('shop/author')
             .then(resp => {
-                
+                setAllAuthors(resp.data);
+                console.log(allAuthors);
             })
             .catch(err => {
                 console.log(err);
@@ -70,7 +75,7 @@ function Book({ book, updateBooksList }) {
                         className="mb-3">
                         <Form.Control type="text" ref={newTitleRef} defaultValue={book.title} />
                     </FloatingLabel>
-                    <FloatingLabel controlId="new" label='Leírás'>
+                    <FloatingLabel label='Leírás'>
                         <Form.Control
                             as="textarea"
                             style={{ height: '100px' }}
@@ -82,6 +87,14 @@ function Book({ book, updateBooksList }) {
                         label="ISBN"
                         className="mb-3">
                         <Form.Control type="text" ref={newISBNRef} defaultValue={book.isbn} />
+                    </FloatingLabel>
+                    <FloatingLabel label="szerzők">
+                        <Form.Select>
+                            <option>adjon hozzá új szerzőket</option>
+                            {allAuthors.map(a => {
+                                return <li value={a.id}>{a.name}</li>;
+                            })}
+                        </Form.Select>
                     </FloatingLabel>
                     <FloatingLabel
                         label="ár"
