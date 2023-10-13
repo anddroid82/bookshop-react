@@ -1,21 +1,26 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
-import Books from './book/Books';
-import Login from './login/Login';
+import Books from './components/books/Books';
+import Login from './components/login/Login';
 import { getAuthToken } from './helpers/token';
 import RouteGuard from './helpers/RouteGuard';
-import NotFound from './helpers/NotFound';
+import NotFound from './components/NotFound';
+import Template from './components/Template';
+import Logout from './components/logout/Logout';
 
 function App() {
   const token = getAuthToken();
   return (
-    <Routes>
-      <Route path="/" element={<RouteGuard />}>
-        <Route path='/' element={<Books />} exact />
-      </Route>
-      <Route path="/login" element={<Login />} />
-      <Route path='*' element={<NotFound/>}/>
-    </Routes>
+    <Template token={token}>
+      <Routes>
+        <Route path="/" element={<RouteGuard />}>
+          <Route path='/' element={<Books />} exact />
+        </Route>
+        <Route path="/login" element={<Login />} />
+        <Route path="/logout" element={<Logout />} />
+        <Route path='*' element={<NotFound />} />
+      </Routes>
+    </Template>
   );
 }
 

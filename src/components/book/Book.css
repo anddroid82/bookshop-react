@@ -1,0 +1,28 @@
+.book {
+    width: 18rem;
+    margin: 10px;
+}
+.bookcover {
+    height: 400px;
+    width: 100%;
+}
+/*.priceControl {
+    width: 150px !important;
+}
+.priceControl input {
+    font-size: 0.8em;
+    padding: 3px 6px !important;
+}
+.priceControl div {
+    margin-top: 2px;
+    margin-left: 5px !important;
+}
+.priceControl p {
+    margin: 0 !important;
+}*/
+.modButton {
+    width: 50px;
+}
+.form-floating {
+    margin-bottom: 5px;
+}

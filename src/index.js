@@ -6,7 +6,15 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import { BrowserRouter } from 'react-router-dom';
+import axios from 'axios';
+import { setAuthToken } from './helpers/token';
 
+axios.interceptors.response.use((response) => response, (error) => {
+  console.log(error.response.status);
+  if (error.response.status === 403) {
+    setAuthToken(null);
+  }
+});
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Book from "./Book";
-import './Book.css'
+import Book from "../book/Book";
+import './Books.css'
 
 function Books() {
   const [books, setBooks] = useState([]);
@@ -16,7 +16,7 @@ function Books() {
         setBooks(result);
       })
       .catch(function (error) {
-        console.log(error);
+        //console.log(error);
       });
   }
 
@@ -25,7 +25,6 @@ function Books() {
   }, []);
 
   return (
-    <div className="container">
       <div className="books mr-auto">
         {books.map(b => {
           return (
@@ -33,7 +32,6 @@ function Books() {
           )
         })}
       </div>
-    </div>
   );
 }
 
