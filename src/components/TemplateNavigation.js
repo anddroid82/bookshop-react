@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useContext} from 'react';
 import { Container } from 'react-bootstrap';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { LinkContainer } from 'react-router-bootstrap';
-import { getAuthToken } from '../helpers/token';
+import { TokenContext } from '../App';
 
 function TemplateNavigation(props) {
-    const token = getAuthToken();
+    const {token,setContextToken} = useContext(TokenContext);
     return (
         token?
         <Navbar expand="lg" className="bg-body-tertiary">
